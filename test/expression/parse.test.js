@@ -496,6 +496,7 @@ describe('parse', function() {
       assert.equal(parseAndEval('8 / 2 / 2'), 2);
     });
 
+    /*
     it('should parse ./', function() {
       assert.equal(parseAndEval('4./2'), 2);
       assert.equal(parseAndEval('4 ./ 2'), 2);
@@ -524,6 +525,7 @@ describe('parse', function() {
 
       assert.deepEqual(parseAndEval('[2,3] .^ [2,3]'), new Matrix([4,27]));
     });
+    */
 
     it('should parse ==', function() {
       assert.equal(parseAndEval('2 == 3'), false);
