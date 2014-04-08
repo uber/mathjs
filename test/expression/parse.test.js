@@ -115,6 +115,7 @@ describe('parse', function() {
       assert.throws(function () {parseAndEval(' hi" '); }, Error);
     });
 
+    /*
     it('should get a string subset', function() {
       var scope = {};
       assert.deepEqual(parseAndEval('c="hello"', scope), "hello");
@@ -122,7 +123,9 @@ describe('parse', function() {
       assert.deepEqual(parseAndEval('c[5:-1:1]', scope), "olleh");
       assert.deepEqual(parseAndEval('c[end-2:-1:1]', scope), "leh");
     });
+    */
 
+    /*
     it('should set a string subset', function() {
       var scope = {};
       assert.deepEqual(parseAndEval('c="hello"', scope), "hello");
@@ -132,6 +135,7 @@ describe('parse', function() {
       assert.deepEqual(parseAndEval('c', scope), "Hello world");
       assert.deepEqual(scope.c, "Hello world");
     });
+    */
 
   });
 
@@ -222,6 +226,7 @@ describe('parse', function() {
     });
 
 
+    /*
     it('should get a matrix subset', function() {
       var scope = {
         a: new Matrix([
@@ -243,7 +248,9 @@ describe('parse', function() {
       assert.deepEqual(parseAndEval('a[2:3, 2]', scope),      new Matrix([[5],[8]]));
       assert.deepEqual(parseAndEval('a[1:2:3, 2]', scope),    new Matrix([[2],[8]]));
     });
+    */
 
+    /*
     it('should parse matrix resizings', function() {
       var scope = {};
       assert.deepEqual(parseAndEval('a = []', scope),    new Matrix([]));
@@ -262,7 +269,9 @@ describe('parse', function() {
       assert.deepEqual(parseAndEval('a[1,1:3] = [[1,2,3]]', scope), new Matrix([[1,2,3]]));
       assert.deepEqual(parseAndEval('a[2,:] = [[4,5,6]]', scope), new Matrix([[1,2,3],[4,5,6]]));
     });
+    */
 
+    /*
     it('should get/set the matrix correctly', function() {
       var scope = {};
       parseAndEval('a=[1,2;3,4]', scope);
@@ -280,7 +289,9 @@ describe('parse', function() {
       scope.b = [[1,2],[3,4]];
       assert.deepEqual(parseAndEval('b[1,:]', scope), [1, 2]);
     });
+    */
 
+    /*
     it('should get/set the matrix correctly for 3d matrices', function() {
       var scope = {};
       assert.deepEqual(parseAndEval('f=[1,2;3,4]', scope), new Matrix([[1,2],[3,4]]));
@@ -296,7 +307,6 @@ describe('parse', function() {
        [7,8]
        ]
        ]));
-       */
       scope.f = new Matrix([
         [
           [1,5],
@@ -323,6 +333,7 @@ describe('parse', function() {
       ]));
       assert.deepEqual(parseAndEval('a[2:end-1, 2:end-1]', scope), new Matrix([[2,0],[9,9]]));
     });
+    */
 
     it('should merge nested matrices', function() {
       var scope = {};
@@ -330,6 +341,7 @@ describe('parse', function() {
 
     });
 
+    /*
     it('should parse matrix concatenations', function() {
       var scope = {};
       parseAndEval('a=[1,2;3,4]', scope);
@@ -348,6 +360,7 @@ describe('parse', function() {
       assert.deepEqual(parseAndEval('[[],[]]', scope).size(), [2, 0]);
       assert.deepEqual(parseAndEval('size([[],[]])', scope), new Matrix([2, 0]));
     });
+    */
 
     it('should throw an error for invalid matrix concatenations', function() {
       var scope = {};
@@ -602,6 +615,7 @@ describe('parse', function() {
       assert.equal(parseAndEval('2 != 2'), false);
     });
 
+    /*
     it('should parse : (range)', function() {
       assert.ok(parseAndEval('2:5') instanceof Matrix);
       assert.deepEqual(parseAndEval('2:5'), new Matrix([2,3,4,5]));
@@ -616,6 +630,7 @@ describe('parse', function() {
       assert.deepEqual(parseAndEval('3:-1:0.1'), new Matrix([3,2,1]));
       assert.deepEqual(parseAndEval('3:-1:-0.1'), new Matrix([3,2,1,0]));
     });
+    */
 
     it('should parse to', function() {
       approx.deepEqual(parseAndEval('2.54 cm to inch'), math.unit(1, 'inch').to('inch'));
@@ -626,6 +641,7 @@ describe('parse', function() {
       approx.deepEqual(parseAndEval('2.54 cm in inch'), math.unit(1, 'inch').to('inch'));
     });
 
+    /*
     it('should parse \' (transpose)', function() {
       assert.deepEqual(parseAndEval('23\''), 23);
       assert.deepEqual(parseAndEval('[1,2,3;4,5,6]\''), new Matrix([[1,4],[2,5],[3,6]]));
@@ -635,6 +651,7 @@ describe('parse', function() {
       assert.deepEqual(parseAndEval('size([1:5])'), new Matrix([1, 5]));
       assert.deepEqual(parseAndEval('[1,2;3,4]\''), new Matrix([[1,3],[2,4]]));
     });
+    */
 
     it('should respect operator precedence', function() {
       assert.equal(parseAndEval('4-2+3'), 5);
@@ -706,18 +723,21 @@ describe('parse', function() {
       approx.equal(bigmath.eval('sin(0.1)'), 0.09983341664682815);
     });
 
+    /*
     it('should create a range from bignumbers', function() {
       assert.deepEqual(bigmath.eval('4:6'),
           bigmath.matrix([new BigNumber(4), new BigNumber(5), new BigNumber(6)]));
       assert.deepEqual(bigmath.eval('0:2:4'),
           bigmath.matrix([new BigNumber(0), new BigNumber(2), new BigNumber(4)]));
     });
+    */
 
     it('should create a matrix with bignumbers', function() {
       assert.deepEqual(bigmath.eval('[0.1, 0.2]'),
           bigmath.matrix([new BigNumber(0.1), new BigNumber(0.2)]));
     });
 
+    /*
     it('should get a elements from a matrix with bignumbers', function() {
       var scope = {};
       assert.deepEqual(bigmath.eval('a=[0.1, 0.2]', scope),
@@ -729,7 +749,9 @@ describe('parse', function() {
       assert.deepEqual(bigmath.eval('a[1:2]', scope),
           bigmath.matrix([new BigNumber(0.1), new BigNumber(0.2)]));
     });
+    */
 
+    /*
     it('should replace elements in a matrix with bignumbers', function() {
       var scope = {};
       assert.deepEqual(bigmath.eval('a=[0.1, 0.2]', scope),
@@ -742,6 +764,7 @@ describe('parse', function() {
       assert.deepEqual(bigmath.eval('a[1:2] = [0.7, 0.8]', scope),
           bigmath.matrix([new BigNumber(0.7), new BigNumber(0.8)]));
     });
+    */
 
     it('should work with complex numbers (downgrades bignumbers to number)', function() {
       assert.deepEqual(bigmath.eval('3i'), new Complex(0, 3));
